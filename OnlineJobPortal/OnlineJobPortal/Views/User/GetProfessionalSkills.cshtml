@@ -1,0 +1,36 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.seeker_keyword>
+
+@if (ViewBag.Count == 0)
+{
+    <p>There is nothing here!</p>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        @Html.Action("GetKeywordName", "User", new { id = item.keyword_id })
+        <div class="progress">
+            <div class="progress-bar bg-paragraph-2" role="progressbar" style="width: @(item.percent + "%")" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>@item.percent%</span></div>
+        </div>
+        <br />
+    }
+}
+
+<!--
+<p class="font-xs color-text-paragraph-2 mb-10">HTML &amp; CSS</p>
+<div class="progress">
+    <div class="progress-bar bg-paragraph-2" role="progressbar" style="width: 78%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>78%</span></div>
+</div>
+<p class="font-xs color-text-paragraph-2 mb-10 mt-30">Javascript</p>
+<div class="progress">
+    <div class="progress-bar bg-brand-2" role="progressbar" style="width: 88%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"><span>88%</span></div>
+</div>
+<p class="font-xs color-text-paragraph-2 mb-10 mt-30">Database</p>
+<div class="progress">
+    <div class="progress-bar bg-paragraph-2" role="progressbar" style="width: 62%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><span>62%</span></div>
+</div>
+<p class="font-xs color-text-paragraph-2 mb-10 mt-30">React JS</p>
+<div class="progress">
+    <div class="progress-bar bg-paragraph-2" role="progressbar" style="width: 92%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span>92%</span></div>
+</div>
+-->

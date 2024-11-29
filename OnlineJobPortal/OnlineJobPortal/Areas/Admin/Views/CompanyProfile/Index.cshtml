@@ -1,0 +1,173 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.company_profile>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="box-heading">
+    <div class="box-title">
+        <h3 class="mb-35">Companies</h3>
+    </div>
+    <div class="box-breadcrumb">
+        <div class="breadcrumbs" style="margin:0; vertical-align:central">
+
+            <p style="margin-bottom:0">
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="section-box">
+        <div class="row">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.account.email)
+                                </th>
+                                <th>
+                                    Industry @Html.DisplayNameFor(model => model.industry.name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.slogan)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.welcome)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.essential)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.recruitment)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.people)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.company_background)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.company_image)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.company_logo)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.establishment_date)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.company_website_url)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.address)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.country)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.city)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.meta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.hide)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.order)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.datebegin)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.account.email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.industry.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.slogan)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.welcome)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.essential)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.recruitment)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.people)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.company_background)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.company_image)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.company_logo)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.establishment_date)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.company_website_url)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.country)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.city)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.meta)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.hide)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.order)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.datebegin)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

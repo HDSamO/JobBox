@@ -1,0 +1,548 @@
+﻿@model OnlineJobPortal.Models.my_profile
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<section class="section-box-2">
+    <div class="container">
+        <div class="banner-hero banner-image-single"><img src="/Assets/jobbox/imgs/page/candidates/@(Model.seeker.wallpaper != null ? Model.seeker.wallpaper : "img.png")" alt="jobbox"><a class="btn-editor" href="#"></a></div>
+        <div class="box-company-profile">
+            <div class="image-compay"><img src="/Assets/jobbox/imgs/page/candidates/@(Model.seeker.avatar_profile != null ? Model.seeker.avatar_profile : "candidate-profile.png")" alt="jobbox"></div>
+            <div class="row mt-10">
+                <div class="col-lg-8 col-md-12">
+                    <h5 class="f-18">@Model.seeker.first_name @Model.seeker.last_name<span class="card-location font-regular ml-20">@(Model.seeker.address != null ? Model.seeker.address + "," : "") @Model.seeker.city, @Model.seeker.country</span></h5>
+                    <p class="mt-0 font-md color-text-paragraph-2 mb-15">@(Model.seeker.title != null ? Model.seeker.title : "")</p>
+                </div>
+                <div class="col-lg-4 col-md-12 text-lg-end"><a class='btn btn-preview-icon btn-apply btn-apply-big' href='/candidates/@Model.seeker.meta/@Model.seeker.id'>Preview</a></div>
+            </div>
+        </div>
+        <div class="border-bottom pt-10 pb-10"></div>
+    </div>
+</section>
+<section class="section-box mt-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="box-nav-tabs nav-tavs-profile mb-5">
+                    <ul class="nav" role="tablist">
+                        <li><a class="btn btn-border aboutus-icon mb-20 active" href="/profile" aria-selected="true">My Profile</a></li>
+                        <li><a class="btn btn-border people-icon mb-20" href="/change-password" aria-selected="false">Change Password</a></li>
+                        <li><a class="btn btn-border recruitment-icon mb-20" href="/my-jobs" aria-selected="false">My Jobs</a></li>
+                        <li><a class="btn btn-border recruitment-icon mb-20" href="/accepted-jobs" aria-selected="false">Accepted Jobs</a></li>
+                        <li><a class="btn btn-border recruitment-icon mb-20" href="/rejected-jobs" aria-selected="false">Rejected Jobs</a></li>
+                    </ul>
+                    <div class="border-bottom pt-10 pb-10"></div>
+                    <div class="mt-20 mb-20"><a class="link-red" href="#">Delete Account</a></div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
+                <div class="content-single">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="tab-my-profile" role="tabpanel" aria-labelledby="tab-my-profile">
+                            <h3 class="mt-0 mb-15 color-brand-1">My Profile</h3>
+                            <!--
+                            <div class="mt-35 mb-40 box-info-profie">
+                                <a class="font-md color-text-paragraph-2" href="#">Update your profile</a>
+                                <div class="image-profile"><img src="/Assets/jobbox/imgs/page/candidates/candidate-profile.png" alt="jobbox"></div><a class="btn btn-apply">Upload Avatar</a><a class="btn btn-link">Delete</a>
+                            </div>
+                            -->
+                            <div class="row form-contact">
+                                @using (Html.BeginForm("MyProfile", "User"))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    @Html.HiddenFor(model => model.account.id, new { htmlAttributes = new { @class = "form-control", @required = true } })
+
+                                    <div class="row form-contact">
+                                        <!-- Profile -->
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="row">
+                                                <!-- First Name & Last Name -->
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        @Html.Label("First Name *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                        <div class="col-md-10">
+                                                            @Html.EditorFor(model => model.seeker.first_name, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                                            @Html.ValidationMessageFor(model => model.seeker.first_name, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        @Html.Label("Last Name *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                        <div class="col-md-10">
+                                                            @Html.EditorFor(model => model.seeker.last_name, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                                            @Html.ValidationMessageFor(model => model.seeker.last_name, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Dob & Gender -->
+                                                <div class="form-group">
+                                                    @Html.Label("Date Of Birth *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="col-md-11">
+                                                        @Html.EditorFor(model => model.seeker.date_of_birth, new { htmlAttributes = new { @class = "form-control", @required = true, @id = "datetimepicker" } })
+                                                        @Html.ValidationMessageFor(model => model.seeker.date_of_birth, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.seeker.gender, "Gender *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="col-md-11">
+                                                        @Html.DropDownListFor(model => model.seeker.gender,
+                                                            new SelectList(new[]
+                                                            {
+                                                                new SelectListItem { Text = "Male", Value = "True" },
+                                                                new SelectListItem { Text = "Female", Value = "False" }
+                                                            }, "Value", "Text", Model.seeker.gender),
+                                                            htmlAttributes: new { @class = "form-control", @required = "required" })
+                                                    </div>
+                                                </div>
+
+                                                <!-- Email & Phone -->
+                                                <div class="form-group">
+                                                    @Html.Label("Email *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="col-md-11">
+                                                        @Html.EditorFor(model => model.account.email, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                                        @Html.ValidationMessageFor(model => model.account.email, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.Label("Contact number *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="col-md-11">
+                                                        @Html.EditorFor(model => model.account.phone_number, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                                        @Html.ValidationMessageFor(model => model.account.phone_number, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <!-- Location (Address, City, Country) -->
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        @Html.Label("Country *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                        <div class="col-md-10">
+                                                            @Html.EditorFor(model => model.seeker.country, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                                            @Html.ValidationMessageFor(model => model.seeker.country, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        @Html.Label("City *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                        <div class="col-md-10">
+                                                            @Html.EditorFor(model => model.seeker.city, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                                            @Html.ValidationMessageFor(model => model.seeker.city, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.Label("Address", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="col-md-11">
+                                                        @Html.EditorFor(model => model.seeker.address, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.seeker.address, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <!-- Bio -->
+
+                                                <div class="form-group">
+                                                    @Html.Label("Title *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="col-md-11">
+                                                        @Html.EditorFor(model => model.seeker.title, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                                        @Html.ValidationMessageFor(model => model.seeker.title, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.Label("About *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="col-md-11">
+                                                        @Html.TextAreaFor(model => model.seeker.about, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                                        @Html.ValidationMessageFor(model => model.seeker.about, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <!-- Salary -->
+                                                <div class="form-group">
+                                                    @Html.Label("Current Salary", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="col-md-11">
+                                                        @Html.EditorFor(model => model.seeker.current_salary, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.seeker.current_salary, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.Label("Low Salary Range", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="col-md-11">
+                                                        @Html.EditorFor(model => model.seeker.low_salary_range, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.seeker.low_salary_range, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.Label("High Salary Range", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="col-md-11">
+                                                        @Html.EditorFor(model => model.seeker.high_salary_range, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.seeker.high_salary_range, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-12">
+                                            <!-- Skills -->
+                                            <div class="box-skills">
+                                                <h5 class="mt-0 color-brand-1">Skills</h5>
+                                                <div class="form-contact">
+                                                    <div class="form-group">
+                                                        <select id="skillDropdown">
+                                                            <option value="">Select a skill</option>
+                                                            @foreach (var skill in Model.all_skills)
+                                                            {
+                                                                <option value="@skill.id">@skill.name</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <input id="percentKeyword" type="number" min="0" max="100" placeholder="Enter proficency" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button id="addBtnSkill">Add Skill</button>
+                                                    </div>
+                                                </div>
+                                                <div class="box-tags mt-30" id="selectedSkills">
+                                                    @foreach (var skill in Model.my_skills)
+                                                    {
+                                                        <a class="btn btn-grey-small mr-10" data-id="@skill.id">@skill.name<span class="close-icon"></span></a>
+                                                    }
+                                                </div>
+
+                                                <script>
+                                                    // Thêm sự kiện click cho mỗi close-icon
+                                                    document.querySelectorAll('.close-icon').forEach(function (closeIcon) {
+                                                        closeIcon.addEventListener('click', function () {
+                                                            // Lấy id của kỹ năng từ thuộc tính data-id của nút đóng
+                                                            var skillId = this.parentElement.getAttribute('data-id');
+                                                            // Gọi hàm deleteSkill với id của kỹ năng
+                                                            deleteSkill(skillId);
+                                                            // Loại bỏ thẻ HTML của kỹ năng đã xóa
+                                                            this.parentElement.remove();
+                                                        });
+                                                    });
+                                                </script>
+
+                                                <div class="mt-40"> <span class="card-info font-sm color-text-paragraph-2">You can add up to 15 skills</span></div>
+                                            </div>
+
+                                            <!-- Education -->
+                                            <div class="box-skills">
+                                                <h5 class="mt-0 color-brand-1">Education</h5>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.seeker.education, "Education *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="">
+                                                        @Html.DropDownListFor(model => model.seeker.education, new SelectList(new[]
+                                                        {
+                                                            new SelectListItem { Text = "High School", Value = "High School" },
+                                                            new SelectListItem { Text = "Bachelor", Value = "Bachelor" },
+                                                            new SelectListItem { Text = "Master", Value = "Master" },
+                                                            new SelectListItem { Text = "PhD", Value = "PhD" },
+                                                            new SelectListItem { Text = "Other", Value = "Other" }
+                                                        }, "Value", "Text", Model.seeker.education), htmlAttributes: new { @class = "form-control", @required = "required" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.Label("Description *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="">
+                                                        @Html.TextAreaFor(model => model.seeker.desc_education, new { htmlAttributes = new { @class = "form-control", @required = true, @style = "height:150px;" } })
+                                                        @Html.ValidationMessageFor(model => model.seeker.desc_education, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Experience -->
+                                            <div class="box-skills">
+                                                <h5 class="mt-0 color-brand-1">Experience</h5>
+                                                <div class="form-group">
+                                                    @Html.Label("Year of Experience *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="">
+                                                        @Html.EditorFor(model => model.seeker.experience, new { htmlAttributes = new { @class = "form-control", @required = true, @min = "0", @max = "30" } })
+                                                        @Html.ValidationMessageFor(model => model.seeker.experience, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.Label("Description *", htmlAttributes: new { @class = "font-sm color-text-mutted mb-10" })
+                                                    <div class="">
+                                                        @Html.TextAreaFor(model => model.seeker.desc_experience, new { htmlAttributes = new { @class = "form-control", @required = true, @style = "height:150px;" } })
+                                                        @Html.ValidationMessageFor(model => model.seeker.desc_experience, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="border-bottom pt-10 pb-10 mb-30"></div>
+                                        <div class="box-button mt-15">
+                                            <button type="submit" class="btn btn-apply-big font-md font-bold">Save All Changes</button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<script>
+    document.getElementById('addBtnSkill').addEventListener('click', function () {
+        var selectedSkillPercent = document.getElementById('percentKeyword').value;
+        var skillDropdown = document.getElementById('skillDropdown');
+        var selectedId = skillDropdown.value;
+
+        // Kiểm tra giá trị nhập vào của phần trăm kỹ năng
+        if (selectedSkillPercent === "" || isNaN(selectedSkillPercent || selectedSkillPercent < 0 || selectedSkillPercent > 100)) {
+            alert("Please enter a valid proficiency percentage between 0 and 100.");
+            return;
+        }
+
+        if (selectedId) {
+            var selectedText = skillDropdown.options[skillDropdown.selectedIndex].text;
+            var selectedSkillsDiv = document.getElementById('selectedSkills');
+
+            // Kiểm tra xem có vượt quá giới hạn 15 kỹ năng không
+            if (selectedSkillsDiv.children.length / 3 >= 15) {
+                alert("You can only add up to 15 skills.");
+                skillDropdown.value = "";
+                return;
+            }
+
+            // Kiểm tra xem kỹ năng đã được thêm chưa
+            if (!selectedSkillsDiv.querySelector('[data-id="' + selectedId + '"]')) {
+                var newTag = document.createElement('a');
+                newTag.className = 'btn btn-grey-small mr-10';
+                newTag.setAttribute('data-id', selectedId);
+                newTag.innerHTML = selectedText + ' <span class="close-icon"></span>';
+
+                newTag.querySelector('.close-icon').addEventListener('click', function () {
+                    selectedSkillsDiv.removeChild(newTag);
+                    // Xóa kỹ năng khỏi cơ sở dữ liệu
+                    deleteSkill(selectedId);
+                });
+
+                selectedSkillsDiv.appendChild(newTag);
+
+                // Thêm kỹ năng vào cơ sở dữ liệu
+                addSkillToDatabase(selectedId, selectedSkillPercent);
+
+                // Reset lại dropdown và input
+                skillDropdown.value = "";
+                document.getElementById('percentKeyword').value = "";
+            }
+        } else {
+            alert("Please select a skill.");
+        }
+    });
+
+    function addSkillToDatabase(skillId, percent) {
+        // Gửi yêu cầu AJAX để thêm kỹ năng vào cơ sở dữ liệu
+        $.ajax({
+            url: '/add-seeker-keyword',
+            type: 'POST',
+            data: { skillId: skillId, percent: percent },
+            success: function (response) {
+                console.log('Skill added to database successfully.');
+            },
+            error: function (error) {
+                console.error('Error adding skill to database:', error);
+            }
+        });
+    }
+
+    function deleteSkill(skillId) {
+        // Gửi yêu cầu AJAX để xóa kỹ năng khỏi cơ sở dữ liệu
+        $.ajax({
+            url: '/delete-seeker-keyword',
+            type: 'POST',
+            data: { skillId: skillId },
+            success: function (response) {
+                console.log('Skill deleted from database successfully.');
+            },
+            error: function (error) {
+                console.error('Error deleting skill from database:', error);
+            }
+        });
+    }
+</script>
+
+<!--
+<script>
+    document.getElementById('addBtnSkill').addEventListener('click', function () {
+        var selectedSkillPercent = document.getElementById('percentKeyword').value;
+        var selectedId = this.value;
+
+        if (selectedId) {
+            var selectedText = this.options[this.selectedIndex].text;
+            var selectedSkillsDiv = document.getElementById('selectedSkills');
+
+            // Kiểm tra xem có vượt quá giới hạn 15 kỹ năng không
+            if (selectedSkillsDiv.children.length / 3 >= 15) {
+                alert("You can only add up to 15 skills.");
+                this.value = "";
+                return;
+            }
+
+            // Kiểm tra xem kỹ năng đã được thêm chưa
+            if (!selectedSkillsDiv.querySelector('[data-id="' + selectedId + '"]')) {
+                var newTag = document.createElement('a');
+                newTag.className = 'btn btn-grey-small mr-10';
+                newTag.setAttribute('data-id', selectedId);
+                newTag.innerHTML = selectedText + '<span class="close-icon"></span>';
+
+                newTag.querySelector('.close-icon').addEventListener('click', function () {
+                    selectedSkillsDiv.removeChild(newTag);
+                    selectedSkillsDiv.removeChild(hiddenId);
+                    selectedSkillsDiv.removeChild(hiddenName);
+                    // Xóa kỹ năng khỏi cơ sở dữ liệu
+                    deleteSkill(selectedId);
+                });
+
+                selectedSkillsDiv.appendChild(newTag);
+                selectedSkillsDiv.appendChild(hiddenId);
+                selectedSkillsDiv.appendChild(hiddenName);
+
+                // Thêm kỹ năng vào cơ sở dữ liệu
+                addSkillToDatabase(selectedId, selectedSkillPercent);
+
+                // Reset lại dropdown
+                this.value = "";
+            }
+        }
+    });
+
+    function addSkillToDatabase(skillId, percent) {
+        // Gửi yêu cầu AJAX để thêm kỹ năng vào cơ sở dữ liệu
+        $.ajax({
+            url: '/add-seeker-keyword',
+            type: 'POST',
+            data: { skillId: skillId, percent: percent },
+            success: function (response) {
+                console.log('Skill added to database successfully.');
+            },
+            error: function (error) {
+                console.error('Error adding skill to database:', error);
+            }
+        });
+    }
+
+    function deleteSkill(skillId) {
+        // Gửi yêu cầu AJAX để xóa kỹ năng khỏi cơ sở dữ liệu
+        $.ajax({
+            url: '/delete-seeker-keyword',
+            type: 'POST',
+            data: { skillId: skillId },
+            success: function (response) {
+                console.log('Skill deleted from database successfully.');
+            },
+            error: function (error) {
+                console.error('Error deleting skill from database:', error);
+            }
+        });
+    }
+
+</script>
+-->
+<!--
+<script>
+    document.getElementById('skillDropdown').addEventListener('change', function () {
+        var selectedId = this.value;
+        if (selectedId) {
+            var selectedText = this.options[this.selectedIndex].text;
+            var selectedSkillsDiv = document.getElementById('selectedSkills');
+
+            // Kiểm tra xem có vượt quá giới hạn 15 kỹ năng không
+            if (selectedSkillsDiv.children.length / 3 >= 15) {
+                alert("You can only add up to 15 skills.");
+                this.value = "";
+                return;
+            }
+
+            // Kiểm tra xem kỹ năng đã được thêm chưa
+            if (!selectedSkillsDiv.querySelector('[data-id="' + selectedId + '"]')) {
+                var newTag = document.createElement('a');
+                newTag.className = 'btn btn-grey-small mr-10';
+                newTag.setAttribute('data-id', selectedId);
+                newTag.innerHTML = selectedText + '<span class="close-icon"></span>';
+
+                // Thêm input ẩn để lưu trữ kỹ năng đã chọn
+                var hiddenId = document.createElement('input');
+                hiddenId.type = 'hidden';
+                hiddenId.name = 'SelectedSkills[' + selectedId + '].Id';
+                hiddenId.value = selectedId;
+
+                var hiddenName = document.createElement('input');
+                hiddenName.type = 'hidden';
+                hiddenName.name = 'SelectedSkills[' + selectedId + '].Name';
+                hiddenName.value = selectedText;
+
+                newTag.querySelector('.close-icon').addEventListener('click', function () {
+                    selectedSkillsDiv.removeChild(newTag);
+                    selectedSkillsDiv.removeChild(hiddenId);
+                    selectedSkillsDiv.removeChild(hiddenName);
+                });
+
+                selectedSkillsDiv.appendChild(newTag);
+                selectedSkillsDiv.appendChild(hiddenId);
+                selectedSkillsDiv.appendChild(hiddenName);
+
+                // Reset lại dropdown
+                this.value = "";
+            }
+            else {
+                // Reset lại dropdown
+                this.value = "";
+            }
+        }
+    });
+
+    document.querySelectorAll('.close-icon').forEach(function (closeIcon) {
+        closeIcon.addEventListener('click', function () {
+            var parentTag = this.parentElement;
+            var skillId = parentTag.getAttribute('data-id');
+            parentTag.parentElement.removeChild(parentTag);
+            document.querySelector('input[name="SelectedSkills[' + skillId + '].Id"]').remove();
+            document.querySelector('input[name="SelectedSkills[' + skillId + '].Name"]').remove();
+        });
+    });
+</script>
+
+<script>
+    function saveSkills() {
+        var selectedSkills = document.querySelectorAll('.btn[data-id]');
+        var skillsData = [];
+
+        selectedSkills.forEach(function (skill) {
+            var skillId = skill.getAttribute('data-id');
+            var skillName = skill.textContent.trim();
+
+            skillsData.push({ id: skillId, name: skillName });
+        });
+
+        // Gửi dữ liệu lên máy chủ bằng Ajax
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: JSON.stringify(skillsData),
+            contentType: 'application/json',
+            success: function (response) {
+                // Xử lý phản hồi từ máy chủ nếu cần
+            },
+            error: function (xhr, status, error) {
+                // Xử lý lỗi nếu có
+            }
+        });
+    }
+
+</script>
+-->

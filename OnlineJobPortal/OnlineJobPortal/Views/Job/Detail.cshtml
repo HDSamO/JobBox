@@ -1,0 +1,248 @@
+﻿@model OnlineJobPortal.Models.job_post
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<section class="section-box-2">
+    <div class="container">
+        <div class="banner-hero banner-image-single"><img src="/Assets/jobbox/imgs/page/company/@(ViewBag.CompanyBackground != null ? ViewBag.CompanyBackground : "img-1.png")" alt="jobBox"></div>
+        <div class="row mt-10">
+            <div class="col-lg-8 col-md-12">
+                <h3>@Model.job_title</h3>
+                <div class="mt-0 mb-15">
+                    @Html.Action("GetStatus", "Job", new { id = Model.id })
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 text-lg-end">
+                <!-- <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div> -->
+                <a href="/apply-job/@Model.meta/@Model.id" class="btn btn-apply-icon btn-apply btn-apply-big hover-up">Apply now</a>
+            </div>
+        </div>
+        <div class="border-bottom pt-10 pb-10"></div>
+    </div>
+</section>
+<section class="section-box mt-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+                <div class="job-overview">
+                    <h5 class="border-bottom pb-15 mb-30">Employment Information</h5>
+                    <div class="row">
+                        <div class="col-md-6 d-flex">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/industry.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description industry-icon mb-10">Industry</span><strong class="small-heading">@(ViewBag.Industry != null ? ViewBag.Industry : "Unknown")</strong></div>
+                        </div>
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/job-level.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description joblevel-icon mb-10">Job level</span><strong class="small-heading">@(ViewBag.JobLevel != null ? ViewBag.JobLevel : "Unknown")</strong></div>
+                        </div>
+                    </div>
+                    <div class="row mt-25">
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/salary.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description salary-icon mb-10">Salary</span><strong class="small-heading">@Model.job_salary vnd / Hours</strong></div>
+                        </div>
+                        <div class="col-md-6 d-flex">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/experience.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description experience-icon mb-10">Experience</span><strong class="small-heading">@(ViewBag.Experience != null ? ViewBag.Experience : "Unknown")</strong></div>
+                        </div>
+                    </div>
+                    <div class="row mt-25">
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/job-type.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description jobtype-icon mb-10">Job type</span><strong class="small-heading">@(ViewBag.JobType != null ? ViewBag.JobType : "Unknown")</strong></div>
+                        </div>
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/location.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description mb-10">Location</span><strong class="small-heading">@Model.city, @Model.country</strong></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-single">
+                    <p>
+                        @(Model.job_welcome != "" ? Model.job_welcome : "There is nothing here!")
+                    </p>
+                </div>
+                <div class="author-single"><span>@ViewBag.CompanyName</span></div>
+                <div class="single-apply-jobs">
+                    <div class="row align-items-center">
+                        <div class="col-md-5">
+                            <a class="btn btn-default mr-15" href="/apply-job/@Model.meta/@Model.id">Apply now</a> 
+                            <!-- <a class="btn btn-border" href="#">Save job</a> --> 
+                        </div>
+                        <div class="col-md-7 text-lg-end social-share">
+                            <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="/Assets/jobbox/imgs/template/icons/share-fb.svg"></a><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="/Assets/jobbox/imgs/template/icons/share-tw.svg"></a><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="/Assets/jobbox/imgs/template/icons/share-red.svg"></a><a class="d-inline-block d-middle" href="#"><img alt="jobBox" src="/Assets/jobbox/imgs/template/icons/share-whatsapp.svg"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15 mt-lg-30">
+                <div class="sidebar-border">
+                    <div class="sidebar-heading">
+                        <div class="avatar-sidebar">
+                            <figure><img alt="jobBox" src="/Assets/jobbox/imgs/page/company/@(ViewBag.CompanyImage != null ? ViewBag.CompanyImage : "company.png")"></figure>
+                            <div class="sidebar-info"><a href="/find-a-company/@ViewBag.meta/@ViewBag.id" class="sidebar-company">@ViewBag.CompanyName</a><span class="card-location">@ViewBag.Location</span><a class="link-underline mt-15" href="@(Url.Action("jobs-list", "find-a-job", new { company = ViewBag.Meta, pageNum = 1 }))">@ViewBag.CountJobs Open Jobs</a></div>
+                        </div>
+                    </div>
+                    <div class="sidebar-list-job">
+                        <ul class="ul-disc">
+                            <li>@(Model.address != null ? Model.address + "," : "") @Model.city, @Model.country</li>
+                            <li>Phone: @ViewBag.PhoneNumber</li>
+                            <li>Email: @ViewBag.Email</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-border">
+                    <h6 class="f-18">Similar jobs</h6>
+                    <div class="sidebar-list-job">
+                        <ul>
+                            @Html.Action("GetSimilarJobs", "Job", new { id = Model.id })
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--
+<section class="section-box mt-50 mb-50">
+    <div class="container">
+        <div class="text-left">
+            <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Featured Jobs</h2>
+            <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Get the latest news, updates and tips</p>
+        </div>
+        <div class="mt-50">
+            <div class="box-swiper style-nav-top">
+                <div class="swiper-container swiper-group-4 swiper">
+                    <div class="swiper-wrapper pb-10 pt-5">
+                        <div class="swiper-slide">
+                            <div class="card-grid-2 hover-up">
+                                <div class="card-grid-2-image-left">
+                                    <span class="flash"></span>
+                                    <div class="image-box"><img src="/Assets/jobbox/imgs/brands/brand-6.png" alt="jobBox"></div>
+                                    <div class="right-info"><a class='name-job' href='company-details.html'>Quora JSC</a><span class="location-small">New York, US</span></div>
+                                </div>
+                                <div class="card-block-info">
+                                    <h6><a href='job-details.html'>Senior System Engineer</a></h6>
+                                    <div class="mt-5"><span class="card-briefcase">Part time</span><span class="card-time">5<span> minutes ago</span></span></div>
+                                    <p class="font-sm color-text-paragraph mt-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
+                                    <div class="mt-30">
+                                        <a class='btn btn-grey-small mr-5' href='job-details.html'>PHP</a><a class='btn btn-grey-small mr-5' href='job-details.html'>Android    </a>
+                                    </div>
+                                    <div class="card-2-bottom mt-30">
+                                        <div class="row">
+                                            <div class="col-lg-7 col-7"><span class="card-text-price">$800</span><span class="text-muted">/Hour</span></div>
+                                            <div class="col-lg-5 col-5 text-end">
+                                                <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card-grid-2 hover-up">
+                                <div class="card-grid-2-image-left">
+                                    <span class="flash"></span>
+                                    <div class="image-box"><img src="/Assets/jobbox/imgs/brands/brand-4.png" alt="jobBox"></div>
+                                    <div class="right-info"><a class='name-job' href='company-details.html'>Dailymotion</a><span class="location-small">New York, US</span></div>
+                                </div>
+                                <div class="card-block-info">
+                                    <h6><a href='job-details.html'>Frontend Developer</a></h6>
+                                    <div class="mt-5"><span class="card-briefcase">Full time</span><span class="card-time">6<span> minutes ago</span></span></div>
+                                    <p class="font-sm color-text-paragraph mt-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
+                                    <div class="mt-30">
+                                        <a class='btn btn-grey-small mr-5' href='jobs-grid.html'>Typescript</a><a class='btn btn-grey-small mr-5' href='jobs-grid.html'>Java</a>
+                                    </div>
+                                    <div class="card-2-bottom mt-30">
+                                        <div class="row">
+                                            <div class="col-lg-7 col-7"><span class="card-text-price">$250</span><span class="text-muted">/Hour</span></div>
+                                            <div class="col-lg-5 col-5 text-end">
+                                                <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card-grid-2 hover-up">
+                                <div class="card-grid-2-image-left">
+                                    <span class="flash"></span>
+                                    <div class="image-box"><img src="/Assets/jobbox/imgs/brands/brand-8.png" alt="jobBox"></div>
+                                    <div class="right-info"><a class='name-job' href='company-details.html'>Periscope</a><span class="location-small">New York, US</span></div>
+                                </div>
+                                <div class="card-block-info">
+                                    <h6><a href='job-details.html'>Lead Quality Control QA</a></h6>
+                                    <div class="mt-5"><span class="card-briefcase">Full time</span><span class="card-time">6<span> minutes ago</span></span></div>
+                                    <p class="font-sm color-text-paragraph mt-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
+                                    <div class="mt-30">
+                                        <a class='btn btn-grey-small mr-5' href='job-details.html'>iOS</a><a class='btn btn-grey-small mr-5' href='job-details.html'>Laravel</a><a class='btn btn-grey-small mr-5' href='job-details.html'>Golang</a>
+                                    </div>
+                                    <div class="card-2-bottom mt-30">
+                                        <div class="row">
+                                            <div class="col-lg-7 col-7"><span class="card-text-price">$250</span><span class="text-muted">/Hour</span></div>
+                                            <div class="col-lg-5 col-5 text-end">
+                                                <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card-grid-2 hover-up">
+                                <div class="card-grid-2-image-left">
+                                    <span class="flash"></span>
+                                    <div class="image-box"><img src="/Assets/jobbox/imgs/brands/brand-4.png" alt="jobBox"></div>
+                                    <div class="right-info"><a class='name-job' href='company-details.html'>Dailymotion</a><span class="location-small">New York, US</span></div>
+                                </div>
+                                <div class="card-block-info">
+                                    <h6><a href='job-details.html'>Frontend Developer</a></h6>
+                                    <div class="mt-5"><span class="card-briefcase">Full time</span><span class="card-time">6<span> minutes ago</span></span></div>
+                                    <p class="font-sm color-text-paragraph mt-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
+                                    <div class="mt-30">
+                                        <a class='btn btn-grey-small mr-5' href='jobs-grid.html'>Typescript</a><a class='btn btn-grey-small mr-5' href='jobs-grid.html'>Java</a>
+                                    </div>
+                                    <div class="card-2-bottom mt-30">
+                                        <div class="row">
+                                            <div class="col-lg-7 col-7"><span class="card-text-price">$250</span><span class="text-muted">/Hour</span></div>
+                                            <div class="col-lg-5 col-5 text-end">
+                                                <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next swiper-button-next-4"></div>
+                <div class="swiper-button-prev swiper-button-prev-4"></div>
+            </div>
+            <div class="text-center"><a class="btn btn-grey" href="#">Load more posts</a></div>
+        </div>
+    </div>
+</section>
+<section class="section-box mt-50 mb-20">
+    <div class="container">
+        <div class="box-newsletter">
+            <div class="row">
+                <div class="col-xl-3 col-12 text-center d-none d-xl-block"><img src="/Assets/jobbox/imgs/template/newsletter-left.png" alt="joxBox"></div>
+                <div class="col-lg-12 col-xl-6 col-12">
+                    <h2 class="text-md-newsletter text-center">New Things Will Always<br> Update Regularly</h2>
+                    <div class="box-form-newsletter mt-40">
+                        <form class="form-newsletter">
+                            <input class="input-newsletter" type="text" value="" placeholder="Enter your email here">
+                            <button class="btn btn-default font-heading icon-send-letter">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-12 text-center d-none d-xl-block"><img src="/Assets/jobbox/imgs/template/newsletter-right.png" alt="joxBox"></div>
+            </div>
+        </div>
+    </div>
+</section>
+-->

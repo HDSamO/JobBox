@@ -1,0 +1,69 @@
+﻿@model OnlineJobPortal.Models.apply_job
+
+@{
+    ViewBag.Title = "ApplyJob";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="modal-body pl-30 pr-30 pt-50">
+    <div class="text-center">
+        <p class="font-sm text-brand-2">Apply to @ViewBag.Name at @ViewBag.Company</p>
+        <h2 class="mt-10 mb-5 text-brand-1 text-capitalize">Start your career today</h2>
+        <p class="font-sm text-muted mb-30">Please fill in your information and send it to the employer.</p>
+    </div>
+    @using (Html.BeginForm("ApplyJob", "Job", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="login-register text-start mt-20 pb-30">
+            <div class="form-group">
+                @Html.LabelFor(model => model.file_cv, "Resume *", new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.file_cv, new { @class = "form-control", type = "file", required = true })
+                @Html.ValidationMessageFor(model => model.file_cv, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.job_Application.cover_letter, "Cover letter (Optional)", htmlAttributes: new { @class = "form-label", @for = "input-1" })
+                <div>
+                    @Html.TextAreaFor(model => model.job_Application.cover_letter, new { @class = "form-control", maxlength = 500, id = "input-1", placeholder = "Những kỹ năng, dự án hay thành tựu nào chứng tỏ bạn là một ứng viên tiềm năng cho vị trí ứng tuyển này?" })
+                    @Html.ValidationMessageFor(model => model.job_Application.cover_letter, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="login_footer form-group d-flex justify-content-between">
+                <label class="cb-container">
+                    <input type="checkbox" id="apply-condition"><span class="text-small">Agree our terms and policy</span><span class="checkmark"></span>
+                </label><a class='text-muted' href='page-contact.html'>Lean more</a>
+            </div>
+
+            <div class="form-group">
+                <div id="checkbox-error-message" class="text-danger text-center"></div>
+            </div>
+
+            <div class="form-group">
+                <button id="btn-apply-job" class="btn btn-default hover-up w-100" type="submit" name="apply">Apply Job</button>
+            </div>
+            <div class="text-muted text-center">Do you need support? <a href='page-contact.html'>Contact Us</a></div>
+        </div>
+    }
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var applyButton = document.getElementById("btn-apply-job");
+        var checkbox = document.getElementById("apply-condition");
+        var errorMessage = document.getElementById("checkbox-error-message");
+
+        checkbox.addEventListener("change", function () {
+            if (checkbox.checked) {
+                errorMessage.textContent = ""; // Xóa tin nhắn nếu checkbox được chọn
+            }
+        });
+
+        applyButton.addEventListener("click", function (event) {
+            if (!checkbox.checked) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định của nút "Apply" nếu checkbox không được chọn
+                errorMessage.textContent = "You must agree to the Terms and Policy.";
+            }
+        });
+    });
+</script>
+

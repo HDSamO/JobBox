@@ -1,0 +1,14 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.keyword>
+
+@foreach (var item in Model)
+{
+    <a class='btn btn-tags-sm mb-10 mr-5' href='/find-a-job/jobs-list'>@item.name</a>
+}
+
+<!--
+<a class='btn btn-tags-sm mb-10 mr-5' href='jobs-grid.html'>Figma</a>
+<a class='btn btn-tags-sm mb-10 mr-5' href='jobs-grid.html'>Adobe XD</a>
+<a class='btn btn-tags-sm mb-10 mr-5' href='jobs-grid.html'>PSD</a>
+<a class='btn btn-tags-sm mb-10 mr-5' href='jobs-grid.html'>App</a>
+<a class='btn btn-tags-sm mb-10 mr-5' href='jobs-grid.html'>Digital</a>
+-->

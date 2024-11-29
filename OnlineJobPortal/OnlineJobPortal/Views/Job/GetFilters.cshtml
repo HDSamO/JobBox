@@ -1,0 +1,126 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.job_post>
+
+@using (Html.BeginForm("jobs-list", "find-a-job", new { area = "", controller = "Job", action = "Index" }, FormMethod.Get))
+{
+    <div class="filter-block head-border mb-30">
+        <h5>Advance Filter <a class="link-reset" href="#">Reset</a></h5>
+    </div>
+    <div class="filter-block mb-30">
+        <div class="form-group select-style select-style-icon">
+            <select class="form-control form-icons select-active">
+                @Html.Action("GetLocation", "Home")
+            </select><i class="fi-rr-marker"></i>
+        </div>
+    </div>
+    <div class="filter-block mb-20">
+        <h5 class="medium-heading mb-15">Industry</h5>
+        <div class="form-group">
+            <ul class="list-checkbox">
+                @Html.Action("GetAllIndustries", "Job")
+            </ul>
+        </div>
+    </div>
+    <div class="filter-block mb-20">
+        <h5 class="medium-heading mb-25">Salary Range</h5>
+        <div class="form-group mb-20">
+            <ul class="list-checkbox">
+                <li>
+                    <label class="cb-container">
+                        <input name="typeSalary" value="1" type="checkbox"><span class="text-small">0 - 50k vnd</span><span class="checkmark"></span>
+                    </label>
+                    @Html.Action("GetAmountJobSalary", "Job", new { id = 1 })
+                </li>
+                <li>
+                    <label class="cb-container">
+                        <input name="typeSalary" value="2" type="checkbox"><span class="text-small">50k - 100k vnd</span><span class="checkmark"></span>
+                    </label>
+                    @Html.Action("GetAmountJobSalary", "Job", new { id = 2 })
+                </li>
+                <li>
+                    <label class="cb-container">
+                        <input name="typeSalary" value="3" type="checkbox"><span class="text-small">100k - 150k vnd</span><span class="checkmark"></span>
+                    </label>
+                    @Html.Action("GetAmountJobSalary", "Job", new { id = 3 })
+                </li>
+                <li>
+                    <label class="cb-container">
+                        <input name="typeSalary" value="4" type="checkbox"><span class="text-small">150k - 200k vnd</span><span class="checkmark"></span>
+                    </label>
+                    @Html.Action("GetAmountJobSalary", "Job", new { id = 4 })
+                </li>
+                <li>
+                    <label class="cb-container">
+                        <input name="typeSalary" value="5" type="checkbox"><span class="text-small">Higher 200k vnd</span><span class="checkmark"></span>
+                    </label>
+                    @Html.Action("GetAmountJobSalary", "Job", new { id = 5 })
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="filter-block mb-30">
+        <h5 class="medium-heading mb-10">Popular Keyword</h5>
+        <div class="form-group">
+            <ul class="list-checkbox">
+                @Html.Action("GetPopularKeyword", "Job")
+            </ul>
+        </div>
+    </div>
+    <div class="filter-block mb-30">
+        <h5 class="medium-heading mb-10">Position</h5>
+        <div class="form-group">
+            <ul class="list-checkbox">
+                @Html.Action("GetJobPosition", "Job")
+            </ul>
+        </div>
+    </div>
+    <div class="filter-block mb-30">
+        <h5 class="medium-heading mb-10">Experience Level</h5>
+        <div class="form-group">
+            <ul class="list-checkbox">
+                @Html.Action("GetJobLevel", "Job")
+            </ul>
+        </div>
+    </div>
+    <div class="filter-block mb-30">
+        <h5 class="medium-heading mb-10">Status</h5>
+        <div class="form-group">
+            <ul class="list-checkbox">
+                @Html.Action("GetJobStatus", "Job")
+            </ul>
+        </div>
+    </div>
+    <div class="filter-block mb-30">
+        <h5 class="medium-heading mb-10">Job Posted</h5>
+        <div class="form-group">
+            <ul class="list-checkbox">
+                <li>
+                    <label class="cb-container">
+                        <input name="typePosted" value="1" type="checkbox"><span class="text-small">1 day</span><span class="checkmark"></span>
+                    </label>
+                    @Html.Action("GetAmountJobPosted", "Job", new { id = 1 })
+                </li>
+                <li>
+                    <label class="cb-container">
+                        <input name="typePosted" value="2" type="checkbox"><span class="text-small">7 days</span><span class="checkmark"></span>
+                    </label>
+                    @Html.Action("GetAmountJobPosted", "Job", new { id = 2 })
+                </li>
+                <li>
+                    <label class="cb-container">
+                        <input name="typePosted" value="3" type="checkbox"><span class="text-small">30 days</span><span class="checkmark"></span>
+                    </label>
+                    @Html.Action("GetAmountJobPosted", "Job", new { id = 3 })
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="filter-block mb-20">
+        <h5 class="medium-heading mb-15">Job type</h5>
+        <div class="form-group">
+            <ul class="list-checkbox">
+                @Html.Action("GetJobType", "Job")
+            </ul>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-default btn-find font-sm">Filter</button>
+}

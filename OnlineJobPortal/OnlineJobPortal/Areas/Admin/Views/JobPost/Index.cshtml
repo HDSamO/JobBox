@@ -1,0 +1,188 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.job_post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MyLayout.cshtml";
+
+    var currentAccount = HttpContext.Current.Session["CurrentAccount"] as OnlineJobPortal.Models.account;
+
+}
+
+<div class="box-heading">
+    <div class="box-title">
+        <h3 class="mb-35">Job posts</h3>
+    </div>
+    <div class="box-breadcrumb">
+        <div class="breadcrumbs" style="margin:0; vertical-align:central">
+
+            <p style="margin-bottom:0">
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="section-box">
+        <div class="row">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Company
+                                </th>
+                                <th>
+                                   Job Experience
+                                </th>
+                                <th>
+                                    Job Level
+                                </th>
+                                <th>
+                                   Job Position
+                                </th>
+                                <th>
+                                    Job Status
+                                </th>
+                                <th>
+                                    Job Type
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.job_title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.is_anonymous)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.job_welcome)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.job_essential)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.job_preferred)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.job_desc)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.job_salary)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.is_active)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.job_verify)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.address)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.country)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.city)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.meta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.hide)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.order)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.datebegin)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.company_profile.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.job_experience.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.job_level.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.job_position.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.job_status.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.job_type.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.job_title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.is_anonymous)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.job_welcome)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.job_essential)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.job_preferred)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.job_desc)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.job_salary)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.is_active)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.job_verify)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.country)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.city)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.meta)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.hide)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.order)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.datebegin)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

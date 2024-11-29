@@ -1,0 +1,14 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.company_profile>
+@{
+    string companyName = ViewBag.Company.name;
+    if (companyName.Length > 10)
+    {
+        companyName = companyName.Substring(0, 10) + "...";
+    }
+}
+
+<img class="img-rounded" src="/Assets/jobbox/imgs/brands/@(ViewBag.Company.company_logo != null ? ViewBag.Company.company_logo : "brand-1.png")" alt="jobBox">
+<div class="info-right-img">
+    <h6 class="color-brand-1 lh-14">@companyName</h6>
+    <span class="card-location font-xxs pl-15 color-text-paragraph-2">@ViewBag.Company.city, <br/> @ViewBag.Company.country</span>
+</div>

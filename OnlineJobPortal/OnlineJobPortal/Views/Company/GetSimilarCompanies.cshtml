@@ -1,0 +1,21 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.company_profile>
+
+@foreach (var item in Model)
+{
+    <li>
+        <div class="card-list-4 wow animate__animated animate__fadeIn hover-up">
+            <div class="image"><a href="/find-a-company/@item.meta/@item.id"><img src="/Assets/jobbox/imgs/brands/@(item.company_logo != null ? item.company_logo : "brand-1.png")" alt="jobBox"></a></div>
+            <div class="info-text">
+                <h5 class="font-md font-bold color-brand-1"><a href="/find-a-company/@item.meta/@item.id">@item.name</a></h5>
+                <div class="mt-0">
+                    @Html.Action("GetOpenJobs", "Home", new { id = item.id })
+                </div>
+                <div class="mt-5">
+                    <div class="row">
+                        <div class="col-12 text-start"><span class="card-briefcase">@item.city , @item.country</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+}

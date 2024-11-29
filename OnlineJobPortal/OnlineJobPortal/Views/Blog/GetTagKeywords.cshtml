@@ -1,0 +1,12 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.keyword>
+
+@foreach (var item in Model)
+{
+    <a class="btn btn-border-3 mr-10 hover-up" href="@(Url.Action("jobs-list", "find-a-job", new { keywordMeta = item.meta, pageNum = 1 }))"># @item.name</a>
+}
+
+<!--
+<a class="btn btn-border-3 mr-10 hover-up" href="#"># Nature</a>
+<a class="btn btn-border-3 mr-10 hover-up" href="#"># Beauty</a>
+<a class="btn btn-border-3 hover-up" href="#"># Travel tips</a>
+-->

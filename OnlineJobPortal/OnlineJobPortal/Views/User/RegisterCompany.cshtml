@@ -1,0 +1,277 @@
+﻿@model OnlineJobPortal.Models.register_view
+
+@{
+    ViewBag.Title = "RegisterCompany";
+    Layout = null;
+}
+
+<!-- Jobpro -->
+<link rel="stylesheet" type="text/css" href="/Assets/jobpro/css/animate.css" />
+<link rel="stylesheet" type="text/css" href="/Assets/jobpro/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/Assets/jobpro/css/font-awesome.css" />
+<link rel="stylesheet" type="text/css" href="/Assets/jobpro/css/fonts.css" />
+<link rel="stylesheet" type="text/css" href="/Assets/jobpro/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/Assets/jobpro/css/owl.carousel.css" />
+<link rel="stylesheet" type="text/css" href="/Assets/jobpro/css/owl.theme.default.css" />
+<link rel="stylesheet" type="text/css" href="/Assets/jobpro/css/flaticon.css" />
+<link rel="stylesheet" type="text/css" href="/Assets/jobpro/css/style_II.css" />
+<link rel="stylesheet" type="text/css" href="/Assets/jobpro/css/responsive2.css" />
+<!-- favicon links -->
+<link rel="shortcut icon" type="image/png" href="/Assets/jobpro/images/header/favicon.ico" />
+
+<div class="jp_tittle_main_wrapper">
+    <div class="jp_tittle_img_overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="jp_tittle_heading_wrapper">
+                    <div class="jp_tittle_heading">
+                        <h2>Register</h2>
+                    </div>
+                    <div class="jp_tittle_breadcrumb_main_wrapper">
+                        <div class="jp_tittle_breadcrumb_wrapper">
+                            <ul>
+                                <li><a href="/home">Home</a> <i class="fa fa-angle-right"></i></li>
+                                <li>Register Company Account</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="register_section">
+    <!-- register_form_wrapper -->
+    <div class="register_tab_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div role="tabpanel">
+
+                        <!-- Nav tabs -->
+                        <ul id="tabOne" class="nav register-tabs">
+                            <li>
+                                <a href="/auth/register/personal-account">
+                                    personal account <br>
+                                    <span>i am looking for a job</span>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="">
+                                    company account <br> <span>
+                                        We are hiring Employees
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <!-- Register for employer -->
+                            <div class="tab-pane fade in active register_left_form" id="contentOne-2">
+                                <div class="jp_regiter_top_heading">
+                                    <p>Fields with * are mandetory </p>
+                                </div>
+                                <div class="row clearfix">
+                                    @using (Html.BeginForm("RegisterCompany", "User"))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                        <!-- Username & Email -->
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                @Html.LabelFor(model => model.companyAccount.username, "Username *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.companyAccount.username, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your username", required = "required", style = "text-transform: none;" } })
+                                                    @Html.ValidationMessageFor(model => model.companyAccount.username, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                @Html.LabelFor(model => model.companyAccount.email, "Email *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.companyAccount.email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your email", required = "required", style = "text-transform: none;" } })
+                                                    @Html.ValidationMessageFor(model => model.companyAccount.email, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Password & Confirm password -->
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                @Html.LabelFor(model => model.companyAccount.password, "Password *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.companyAccount.password, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your password", required = "required", style = "text-transform: none;" } })
+                                                    @Html.ValidationMessageFor(model => model.companyAccount.password, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                @Html.LabelFor(model => model.confirmPassword, "Re-Enter Password *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.confirmPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your password", required = "required", style = "text-transform: none;" } })
+                                                    @Html.ValidationMessageFor(model => model.confirmPassword, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Phone Number & Company Name -->
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                @Html.LabelFor(model => model.companyAccount.phone_number, "Phone Number *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.companyAccount.phone_number, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your phone number", required = "required", style = "text-transform: none;", type = "tel" } })
+                                                    @Html.ValidationMessageFor(model => model.companyAccount.phone_number, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                @Html.LabelFor(model => model.company.name, "Company name *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.company.name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your company name", required = "required", style = "text-transform: none;" } })
+                                                    @Html.ValidationMessageFor(model => model.company.name, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Website & Industry -->
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                @Html.LabelFor(model => model.company.company_website_url, "Website *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.company.company_website_url, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your website url", required = "required", style = "text-transform: none;" } })
+                                                    @Html.ValidationMessageFor(model => model.company.company_website_url, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            @{
+                                                var industries = Session["Industries"] as List<OnlineJobPortal.Models.industry>;
+                                                SelectList industryList = industries != null
+                                                    ? new SelectList(industries, "id", "name")
+                                                    : new SelectList(new List<SelectListItem>());
+                                            }
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                @Html.LabelFor(model => model.company.industry_id, "Industry *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.DropDownListFor(model => model.company.industry_id, industryList, "Select Industry", new { @class = "form-control", required = "required" })
+                                                    @Html.ValidationMessageFor(model => model.company.industry_id, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Slogan -->
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                                @Html.LabelFor(model => model.company.slogan, "Slogan *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.company.slogan, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your company slogan", required = "required", style = "text-transform: none;" } })
+                                                    @Html.ValidationMessageFor(model => model.company.slogan, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Address -->
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                                @Html.LabelFor(model => model.company.address, "Location", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.company.address, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your location (apartment number, street, district) " } })
+                                                    @Html.ValidationMessageFor(model => model.company.address, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- City & Country -->
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                @Html.LabelFor(model => model.company.city, "City *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.company.city, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your city", required = "required", style = "text-transform: none;" } })
+                                                    @Html.ValidationMessageFor(model => model.company.city, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                @Html.LabelFor(model => model.company.country, "Country *", htmlAttributes: new { @class = "control-label" })
+                                                <div>
+                                                    @Html.EditorFor(model => model.company.country, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your country", required = "required", style = "text-transform: none;" } })
+                                                    @Html.ValidationMessageFor(model => model.company.country, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="check-box text-center">
+                                                <input type="checkbox" name="shipping-option" id="account-option-2">
+                                                &ensp;
+                                                <label for="account-option-2">
+                                                    I agreed to the <a href="#"
+                                                                       class="check_box_anchr">Terms and Conditions</a> governing
+                                                    the
+                                                    use of jobportal
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="login_btn_wrapper register_btn_wrapper login_wrapper">
+                                            <button type="submit" class="btn btn-primary login_btn" id="register-option-2">register</button>
+                                            <div id="checkbox-error-message-2" class="text-danger text-center"></div>
+                                            <!-- <a href="javascript:;" class="btn btn-primary login_btn"> register </a> -->
+                                        </div>
+
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function () {
+                                                var registerButton = document.getElementById("register-option-2");
+                                                var checkbox = document.getElementById("account-option-2");
+                                                var errorMessage = document.getElementById("checkbox-error-message-2");
+
+                                                checkbox.addEventListener("change", function () {
+                                                    if (checkbox.checked) {
+                                                        errorMessage.textContent = ""; // Xóa tin nhắn nếu checkbox được chọn
+                                                    }
+                                                });
+
+                                                registerButton.addEventListener("click", function (event) {
+                                                    if (!checkbox.checked) {
+                                                        event.preventDefault(); // Ngăn chặn hành động mặc định của nút "Register" nếu checkbox không được chọn
+                                                        errorMessage.textContent = "You must agree to the Terms and Conditions.";
+                                                    }
+                                                });
+                                            });
+                                        </script>
+                                    }
+                                </div>
+                                <div class="login_message">
+                                    <p>Already a member? <a href="/auth/login"> Login Here </a> </p>
+                                </div>
+                                <br />
+                                <div class="login_message">
+                                    <p>Go Home? <a href="/home"> Click Here </a> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="btm_txt_register_form">
+                            In case you are using a public/shared computer we recommend
+                            that you logout to prevent any un-authorized access to your account
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Jobpro -->
+<script src="/Assets/jobpro/js/jquery_min.js"></script>
+<script src="/Assets/jobpro/js/bootstrap.js"></script>
+<script src="/Assets/jobpro/js/jquery.menu-aim.js"></script>
+<script src="/Assets/jobpro/js/jquery.countTo.js"></script>
+<script src="/Assets/jobpro/js/jquery.inview.min.js"></script>
+<script src="/Assets/jobpro/js/owl.carousel.js"></script>
+<script src="/Assets/jobpro/js/modernizr.js"></script>
+<script src="/Assets/jobpro/js/jquery.magnific-popup.js"></script>
+<script src="/Assets/jobpro/js/custom_II.js"></script>

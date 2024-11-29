@@ -1,0 +1,18 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.industry>
+
+<option value="">All industries</option>
+
+@foreach (var item in Model)
+{
+    <option value="@item.meta">@item.name</option>
+}
+
+<!--
+<option value="0">Industry</option>
+<option value="1">Software</option>
+<option value="2">Finance</option>
+<option value="3">Recruting</option>
+<option value="4">Management</option>
+<option value="5">Advertising</option>
+<option value="6">Development</option>
+-->

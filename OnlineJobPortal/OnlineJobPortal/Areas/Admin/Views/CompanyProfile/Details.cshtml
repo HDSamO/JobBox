@@ -1,0 +1,179 @@
+﻿@model OnlineJobPortal.Models.company_profile
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>company_profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.account.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.account.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.industry.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.industry.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.slogan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.slogan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.welcome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.welcome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.essential)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.essential)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recruitment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recruitment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.people)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.people)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.company_background)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.company_background)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.company_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.company_image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.company_logo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.company_logo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.establishment_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.establishment_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.company_website_url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.company_website_url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.meta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.meta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hide)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hide)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datebegin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datebegin)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

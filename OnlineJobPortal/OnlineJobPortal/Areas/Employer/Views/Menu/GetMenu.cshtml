@@ -1,0 +1,28 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.menu>
+
+@{
+    var currentUrl = HttpContext.Current.Request.Url.AbsolutePath.ToLower();
+    var currentUrlParts = currentUrl.Split('/');
+
+    var currentUrlMenu = "dashboard";
+
+    if (currentUrlParts.Length >= 3)
+    {
+        currentUrlMenu = currentUrlParts[2];
+    }
+
+    if (currentUrlMenu.IsEmpty() || currentUrlMenu == null)
+    {
+        currentUrlMenu = "dashboard";
+    }
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <a class="dashboard2 @(item.meta == currentUrlMenu ? "active" : "")" href="/employer/@item.meta">
+            <img src="/Assets/dashboard/imgs/page/dashboard/@(item.image)" alt="jobBox">
+            <span class="name">@item.name</span>
+        </a>
+    </li>
+}

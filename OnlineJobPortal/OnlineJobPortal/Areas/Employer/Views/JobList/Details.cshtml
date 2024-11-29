@@ -1,0 +1,246 @@
+﻿@model OnlineJobPortal.Models.job_post
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Employer/Views/Shared/_MyLayout.cshtml";
+}
+<h2 style="text-align:center">JOB DETAILS</h2>
+<section class="section-box mt-1">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-11 col-md-12 col-sm-12 col-12" style="padding-left:2vw">
+                <div class="job-overview">
+                    <div class="row">
+                        <h5 class="border-bottom pb-15 mb-30">@Model.job_title</h5>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 d-flex">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/industry.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description industry-icon mb-10">Industry: </span><strong class="small-heading">@(Model.company_profile.industry.name != null ? Model.company_profile.industry.name : "Unknown")</strong></div>
+                        </div>
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/job-level.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description joblevel-icon mb-10">Job level: </span><strong class="small-heading">@(Model.job_level.name != null ? Model.job_level.name : "Unknown")</strong></div>
+                        </div>
+                    </div>
+                    <div class="row mt-25">
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/salary.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description salary-icon mb-10">Salary: </span><strong class="small-heading">@Model.job_salary vnd / Hours</strong></div>
+                        </div>
+                        <div class="col-md-6 d-flex">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/experience.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description experience-icon mb-10">Experience: </span><strong class="small-heading">@(Model.job_experience.name != null ? Model.job_experience.name : "Unknown")</strong></div>
+                        </div>
+                    </div>
+                    <div class="row mt-25">
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/job-type.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description jobtype-icon mb-10">Job type: </span><strong class="small-heading">@(Model.job_type.name!= null ? Model.job_type.name : "Unknown")</strong></div>
+                        </div>
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/location.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description mb-10">Location: </span><strong class="small-heading">@Model.city, @Model.country</strong></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-single">
+                    <br />
+                    @Html.Raw(Model.job_desc)
+                </div>
+                <div class="author-single"><span>@Model.company_profile.name.ToString()</span></div>
+
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</section>   
+<h2>Details</h2>
+
+<div>
+    <h4>job_post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.company_profile.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.company_profile.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_experience.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_experience.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_level.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_level.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_position.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_position.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_status.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_status.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_type.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_type.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_anonymous)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_anonymous)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_welcome)
+        </dt>
+
+        @Html.Raw(Model.job_welcome)
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_essential)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_essential)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_preferred)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_preferred)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_desc)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.job_desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_verify)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_verify)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.meta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.meta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hide)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hide)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datebegin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datebegin)
+        </dd>
+
+    </dl>
+</div>
+

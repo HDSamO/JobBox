@@ -1,0 +1,44 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.job_level>
+
+@foreach(var item in Model)
+{
+    <li>
+        <label class="cb-container">
+            <input name="jobLevel" value="@item.meta" type="checkbox"><span class="text-small">@item.name</span><span class="checkmark"></span>
+        </label>
+        @Html.Action("GetAmountCompanyLevel", "Company", new { id = item.id })
+    </li>
+}
+
+<!--
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Internship</span><span class="checkmark"></span>
+    </label><span class="number-item">56</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Entry Level</span><span class="checkmark"></span>
+    </label><span class="number-item">87</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox" checked="checked"><span class="text-small">Associate</span><span class="checkmark"></span>
+    </label><span class="number-item">24</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Mid Level</span><span class="checkmark"></span>
+    </label><span class="number-item">45</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Director</span><span class="checkmark"></span>
+    </label><span class="number-item">76</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Executive</span><span class="checkmark"></span>
+    </label><span class="number-item">89</span>
+</li>
+-->

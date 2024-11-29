@@ -1,0 +1,27 @@
+﻿@model OnlineJobPortal.Models.blog
+
+<div class="col-lg-5 col-md-12 col-sm-12">
+    <a href="/news/@Model.meta/@Model.id">
+        <img src="/Assets/jobbox/imgs/page/blog/@(Model.featured_image != null ? Model.featured_image : "img-content.png")">
+        <!--
+        <img src="/Assets/jobbox/imgs/page/job-single-2/img2.png" alt="jobBox">
+        -->
+    </a>
+</div>
+<div class="col-lg-7 col-md-12 col-sm-12">
+    <div class="pt-40 pb-30 pl-30 pr-30">
+        @Html.Action("GetKeyword", "Blog", new { id = Model.id })
+        <h2 class="mt-20 mb-20"><a href="/news/@Model.meta/@Model.id">@Model.title</a></h2>
+        <p class="font-md mb-20">
+            @{
+                string content = Model.content_1;
+                if (content.Length > 350)
+                {
+                    content = content.Substring(0, 350) + "...";
+                }
+            }
+            @content
+        </p>
+        <div><a class='btn btn-arrow-right' href="/news/@Model.meta/@Model.id">Read More</a></div>
+    </div>
+</div>

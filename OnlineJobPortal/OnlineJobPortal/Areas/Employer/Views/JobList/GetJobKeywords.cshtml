@@ -1,0 +1,7 @@
+﻿
+@model IEnumerable<OnlineJobPortal.Models.keyword>
+
+@foreach (var tag in Model)
+{
+    <a class="btn btn-tag">@tag.name</a>
+}

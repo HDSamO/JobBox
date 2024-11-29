@@ -1,0 +1,54 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.industry>
+
+@foreach (var item in Model)
+{
+    if (item != null)
+    {
+        <li>
+            <label class="cb-container">
+                <input name="industry" value="@item.meta" type="checkbox"><span class="text-small">@item.name</span><span class="checkmark"></span>
+            </label>
+            @Html.Action("GetAmountJobIndustry", "Job", new { id = item.id })
+        </li>
+    }
+}
+
+<!--
+
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">All</span><span class="checkmark"></span>
+    </label>
+    <span class="number-item">ViewBag.Count</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox" checked="checked"><span class="text-small">All</span><span class="checkmark"></span>
+    </label><span class="number-item">180</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Software</span><span class="checkmark"></span>
+    </label><span class="number-item">12</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Finance</span><span class="checkmark"></span>
+    </label><span class="number-item">23</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Recruting</span><span class="checkmark"></span>
+    </label><span class="number-item">43</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Management</span><span class="checkmark"></span>
+    </label><span class="number-item">65</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Advertising</span><span class="checkmark"></span>
+    </label><span class="number-item">76</span>
+</li>
+-->

@@ -1,0 +1,218 @@
+﻿
+@{
+    Layout = null;
+
+    // Truy cập giá trị từ Session
+    var currentAccount = HttpContext.Current.Session["CurrentAccount"] as OnlineJobPortal.Models.account;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<metadata http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="msapplication-TileColor" content="#0E0E0E">
+    <meta name="template-color" content="#0E0E0E">
+    <link rel="manifest" href="manifest.html" crossorigin>
+    <meta name="msapplication-config" content="browserconfig.html">
+    <meta name="description" content="Index page">
+    <meta name="keywords" content="index, page">
+    <meta name="author" content="">
+
+    <!-- Jobbox -->
+    <link rel="shortcut icon" type="image/x-icon" href="/Assets/jobbox/imgs/template/favicon.svg">
+    <link href="/Assets/jobbox/css/stylecd4e.css?version=4.1" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <title>Jobbox - Job Portal HTML Template </title>
+</head>
+<body>
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="text-center"><img src="/Assets/jobbox/imgs/template/loading.gif" alt="jobBox"></div>
+            </div>
+        </div>
+    </div>
+    <header class="header sticky-bar">
+        <div class="container">
+            <div class="main-header">
+                <div class="header-left">
+                    <div class="header-logo"><a class='d-flex' href=""><img alt="jobBox" src="/Assets/jobbox/imgs/template/jobhub-logo.svg"></a></div>
+                </div>
+                <div class="header-nav">
+                    <nav class="nav-main-menu">
+                        <ul class="main-menu">
+                            @{ Html.RenderAction("GetMenu", "Menu"); }
+                        </ul>
+                    </nav>
+                    <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
+                </div>
+                <div class="header-right">
+                    @if (currentAccount == null)
+                    {
+                        <div class="block-signin">
+                            <a class='btn btn-default btn-shadow ml-40 hover-up' href='/auth/login'>Sign in</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="block-signin">
+                            <!-- <h4 class='text-link-bd-btom hover-up'>Hi, @currentAccount.username</h4> -->
+                            <a class='text-link-bd-btom hover-up' href="@Url.Action("MyProfile", "User")">My Profile</a>
+                            <a class='btn btn-default btn-shadow ml-40 hover-up' href="@Url.Action("Logout", "User")">Log out</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+        <div class="mobile-header-wrapper-inner">
+            <div class="mobile-header-content-area">
+                <div class="perfect-scroll">
+                    <div class="mobile-search mobile-header-border mb-30">
+                        <form action="#">
+                            <input type="text" placeholder="Search…"><i class="fi-rr-search"></i>
+                        </form>
+                    </div>
+                    <div class="mobile-menu-wrap mobile-header-border">
+                        <!-- mobile menu start-->
+                        <nav>
+                            <ul class="mobile-menu font-heading">
+                                @{ Html.RenderAction("GetMenu", "Menu"); }
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="mobile-account">
+                        <h6 class="mb-10">Your Account</h6>
+                        <ul class="mobile-menu font-heading">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Work Preferences</a></li>
+                            <li><a href="#">Account Settings</a></li>
+                            <li><a href="#">Go Pro</a></li>
+                            <li><a href='page-signin.html'>Sign Out</a></li>
+                        </ul>
+                    </div>
+                    <div class="site-copyright">Copyright 2022 &copy; JobBox.<br>Designed by AliThemes.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+        <div class="mobile-header-wrapper-inner">
+            <div class="mobile-header-content-area">
+                <div class="perfect-scroll">
+                    <div class="mobile-search mobile-header-border mb-30">
+                        <form action="#">
+                            <input type="text" placeholder="Search…"><i class="fi-rr-search"></i>
+                        </form>
+                    </div>
+                    <div class="mobile-menu-wrap mobile-header-border">
+                        <!-- mobile menu start-->
+                        <nav>
+                            <ul class="mobile-menu font-heading">
+                                @{ Html.RenderAction("GetMenu", "Menu"); }
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="mobile-account">
+                        <h6 class="mb-10">Your Account</h6>
+                        <ul class="mobile-menu font-heading">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Work Preferences</a></li>
+                            <li><a href="#">Account Settings</a></li>
+                            <li><a href="#">Go Pro</a></li>
+                            <li><a href='page-signin.html'>Sign Out</a></li>
+                        </ul>
+                    </div>
+                    <div class="site-copyright">Copyright 2022 &copy; JobBox.<br>Designed by AliThemes.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        @RenderBody()
+    </main>
+
+    <footer class="footer mt-50">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1 col-md-3 col-sm-12">
+                    <a href='index.html'><img alt="jobBox" src="/Assets/jobbox/imgs/template/jobhub-logo.svg"></a>
+                    <div class="mt-20 mb-20 font-xs color-text-paragraph-2">JobBox is the heart of the design community and the best resource to discover and connect with designers and jobs worldwide.</div>
+                    <div class="footer-social"><a class="icon-socials icon-facebook" href="#"></a><a class="icon-socials icon-twitter" href="#"></a><a class="icon-socials icon-linkedin" href="#"></a></div>
+                </div>
+                <div class="footer-col-2 col-md-2 col-xs-6">
+                    <h6 class="mb-20">Resources</h6>
+                    <ul class="menu-footer">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-3 col-md-2 col-xs-6">
+                    <h6 class="mb-20">Community</h6>
+                    <ul class="menu-footer">
+                        <li><a href="#">Feature</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Credit</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4 col-md-2 col-xs-6">
+                    <h6 class="mb-20">Quick links</h6>
+                    <ul class="menu-footer">
+                        <li><a href="#">iOS</a></li>
+                        <li><a href="#">Android</a></li>
+                        <li><a href="#">Microsoft</a></li>
+                        <li><a href="#">Desktop</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-5 col-md-2 col-xs-6">
+                    <h6 class="mb-20">More</h6>
+                    <ul class="menu-footer">
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-6 col-md-3 col-sm-12">
+                    <h6 class="mb-20">Download App</h6>
+                    <p class="color-text-paragraph-2 font-xs">Download our Apps and get extra 15% Discount on your first Order&mldr;!</p>
+                    <div class="mt-15"><a class="mr-5" href="#"><img src="/Assets/jobbox/imgs/template/icons/app-store.png" alt="joxBox"></a><a href="#"><img src="/Assets/jobbox/imgs/template/icons/android.png" alt="joxBox"></a></div>
+                </div>
+            </div>
+            <div class="footer-bottom mt-50">
+                <div class="row">
+                    <div class="col-md-6"><span class="font-xs color-text-paragraph">Copyright &copy; 2022. JobBox all right reserved</span></div>
+                    <div class="col-md-6 text-md-end text-start">
+                        <div class="footer-social"><a class="font-xs color-text-paragraph" href="#">Privacy Policy</a><a class="font-xs color-text-paragraph mr-30 ml-30" href="#">Terms &amp; Conditions</a><a class="font-xs color-text-paragraph" href="#">Security</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Jobbox -->
+    <script src="/Assets/jobbox/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/Assets/jobbox/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/Assets/jobbox/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="/Assets/jobbox/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="/Assets/jobbox/js/plugins/waypoints.js"></script>
+    <script src="/Assets/jobbox/js/plugins/wow.js"></script>
+    <script src="/Assets/jobbox/js/plugins/magnific-popup.js"></script>
+    <script src="/Assets/jobbox/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="/Assets/jobbox/js/plugins/select2.min.js"></script>
+    <script src="/Assets/jobbox/js/plugins/isotope.js"></script>
+    <script src="/Assets/jobbox/js/plugins/scrollup.js"></script>
+    <script src="/Assets/jobbox/js/plugins/swiper-bundle.min.js"></script>
+    <script src="/Assets/jobbox/js/main8c94.js?v=4.1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+</body>
+</html>

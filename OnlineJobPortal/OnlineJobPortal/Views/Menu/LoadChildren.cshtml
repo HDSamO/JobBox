@@ -1,0 +1,14 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.menu>
+
+@if ((int)ViewBag.Count > 0)
+{
+    <ul class="sub-menu">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href='/@item.meta'>@item.name</a>
+                @Html.Action("LoadChildren", "Menu", new { id = item.id })
+            </li>
+        }
+    </ul>
+}

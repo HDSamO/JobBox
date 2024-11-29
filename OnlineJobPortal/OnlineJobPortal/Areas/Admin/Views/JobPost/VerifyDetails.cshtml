@@ -1,0 +1,85 @@
+﻿@model OnlineJobPortal.Models.job_post
+
+@{
+    ViewBag.Title = "VerifyDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2 style="text-align:center">JOB DETAILS</h2>
+<section class="section-box mt-1">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-11 col-md-12 col-sm-12 col-12" style="padding-left:2vw">
+                <div class="job-overview">
+                    <div class="row">
+                        <h5 class="border-bottom pb-15 mb-30">@Model.job_title</h5>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 d-flex">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/industry.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description industry-icon mb-10">Industry: </span><strong class="small-heading">@(Model.company_profile.industry.name != null ? Model.company_profile.industry.name : "Unknown")</strong></div>
+                        </div>
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/job-level.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description joblevel-icon mb-10">Job level: </span><strong class="small-heading">@(Model.job_level.name != null ? Model.job_level.name : "Unknown")</strong></div>
+                        </div>
+                    </div>
+                    <div class="row mt-25">
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/salary.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description salary-icon mb-10">Salary: </span><strong class="small-heading">@Model.job_salary vnd / Hours</strong></div>
+                        </div>
+                        <div class="col-md-6 d-flex">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/experience.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description experience-icon mb-10">Experience: </span><strong class="small-heading">@(Model.job_experience.name != null ? Model.job_experience.name : "Unknown")</strong></div>
+                        </div>
+                    </div>
+                    <div class="row mt-25">
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/job-type.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description jobtype-icon mb-10">Job type: </span><strong class="small-heading">@(Model.job_type.name!= null ? Model.job_type.name : "Unknown")</strong></div>
+                        </div>
+                        <div class="col-md-6 d-flex mt-sm-15">
+                            <div class="sidebar-icon-item"><img src="/Assets/jobbox/imgs/page/job-single/location.svg" alt="jobBox"></div>
+                            <div class="sidebar-text-info ml-10"><span class="text-description mb-10">Location: </span><strong class="small-heading">@Model.city, @Model.country</strong></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-single">
+                    <br />
+                    @Html.Raw(Model.job_desc)
+                </div>
+                <div class="author-single"><span>@Model.company_profile.name.ToString()</span></div>
+
+            </div>
+
+            <div class="job-overview">
+                <div class="row">
+                    <h5 class="border-bottom pb-15 mb-30">Current status: @Model.job_verify</h5>
+
+                </div>
+                
+                    <div class="row">
+                        <h5 class="border-bottom pb-15 mb-30">Current status: @Model.job_verify</h5>
+                    </div>
+                    <div class="row">
+                        <button type="submit name="action" value="Back" class="btn btn-secondary" style="width:30%" onclick="location.href='@Url.Action("VerifyQueue", "JobPost")'">Back</button>
+                        <button type="submit" name="action" value="Accept" class="btn btn-success" style="margin-left: 4%; width:30%; color:white">@Html.ActionLink("Accept", "AcceptJobPost", new { id = Model.id }, new { style = "color: white" }) </button>
+                        <button type="submit" name="action" value="Reject" class="btn btn-danger" style="margin-left: 4%; width: 30%; color: white">@Html.ActionLink("Reject", "RejectJobPost", new { id = Model.id }, new { style = "color: white" })</button>
+
+                       
+                    </div>
+            </div>
+            
+
+
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</section>
+

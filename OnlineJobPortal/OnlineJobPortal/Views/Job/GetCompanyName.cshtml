@@ -1,0 +1,6 @@
+﻿@model OnlineJobPortal.Models.company_profile
+
+<div class="image-box">
+    <img src="/Assets/jobbox/imgs/brands/@(Model.company_logo != null ? Model.company_logo : "brand-1.png")" alt="jobBox">
+</div>
+<div class="right-info"><a class="name-job" href="/find-a-company/@Model.meta/@Model.id">@Model.name</a><span class="location-small">@(Model.address != null ? Model.address + "," : "") @Model.city, @Model.country</span></div>

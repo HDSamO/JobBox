@@ -1,0 +1,138 @@
+﻿@model OnlineJobPortal.Models.company_profile
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<section class="section-box-2">
+    <div class="container">
+        <div class="banner-hero banner-image-single"><img src="~/Assets/jobbox/imgs/page/company/@(Model.company_background != null ? Model.company_background : "img-1.png")" alt="jobBox"></div>
+        <div class="box-company-profile">
+            <div class="image-compay"><img src="~/Assets/jobbox/imgs/page/company/@(Model.company_image != null ? Model.company_image : "company.png")" alt="jobBox"></div>
+            <div class="row mt-10">
+                <div class="col-lg-8 col-md-12">
+                    <h5 class="f-18">@Model.name <span class="card-location font-regular ml-20">@Model.city, @Model.country</span></h5>
+                    <p class="mt-5 font-md color-text-paragraph-2 mb-15">@Model.slogan</p>
+                </div>
+                <div class="col-lg-4 col-md-12 text-lg-end"><a class='btn btn-call-icon btn-apply btn-apply-big' href='@(Model.company_website_url != null ? Model.company_website_url : "#")'>Contact us</a></div>
+            </div>
+        </div>
+        <div class="box-nav-tabs mt-40 mb-5">
+            <ul class="nav" role="tablist">
+                <li><a class="btn btn-border aboutus-icon mr-15 mb-5 active" href="#tab-about" data-bs-toggle="tab" role="tab" aria-controls="tab-about" aria-selected="true">About us</a></li>
+                <li><a class="btn btn-border recruitment-icon mr-15 mb-5" href="#tab-recruitments" data-bs-toggle="tab" role="tab" aria-controls="tab-recruitments" aria-selected="false">Recruitments</a></li>
+                <li><a class="btn btn-border people-icon mb-5" href="#tab-people" data-bs-toggle="tab" role="tab" aria-controls="tab-people" aria-selected="false">People</a></li>
+            </ul>
+        </div>
+        <div class="border-bottom pt-10 pb-10"></div>
+    </div>
+</section>
+<section class="section-box mt-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+                <div class="content-single">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="tab-about" role="tabpanel" aria-labelledby="tab-about">
+                            <p>
+                                @(Model.welcome != "" ? Model.welcome : "There is nothing here!")
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="tab-recruitments" role="tabpanel" aria-labelledby="tab-recruitments">
+                            <p>
+                                @(Model.recruitment != "" ? Model.recruitment : "There is nothing here!")
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="tab-people" role="tabpanel" aria-labelledby="tab-people">
+                            <p>
+                                @(Model.people != "" ? Model.people : "There is nothing here!")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-related-job content-page">
+                    <h5 class="mb-30">Latest Jobs</h5>
+                    <div class="box-list-jobs display-list">
+                        @Html.Action("GetLastestJobs", "Company", new { id = Model.id })
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15 mt-lg-30">
+                <div class="sidebar-border">
+                    <div class="sidebar-heading">
+                        <div class="avatar-sidebar">
+                            <div class="sidebar-info pl-0"><span class="sidebar-company">@Model.name</span><span class="card-location">@Model.city, @Model.country</span></div>
+                        </div>
+                    </div>
+                    <div class="sidebar-list-job">
+                        <ul>
+                            <li>
+                                <div class="sidebar-icon-item"><i class="fi-rr-briefcase"></i></div>
+                                <div class="sidebar-text-info"><span class="text-description">Company field</span><strong class="small-heading">@ViewBag.Industry</strong></div>
+                            </li>
+                            <li>
+                                <div class="sidebar-icon-item"><i class="fi-rr-marker"></i></div>
+                                <div class="sidebar-text-info"><span class="text-description">Location</span><strong class="small-heading">@Model.city , @Model.country</strong></div>
+                            </li>
+                            <li>
+                                <div class="sidebar-icon-item"><i class="fi-rr-dollar"></i></div>
+                                <div class="sidebar-text-info"><span class="text-description">Salary</span><strong class="small-heading">@ViewBag.MinSalary - @ViewBag.MaxSalary vnd</strong></div>
+                            </li>
+                            <li>
+                                <div class="sidebar-icon-item"><i class="fi-rr-clock"></i></div>
+                                <div class="sidebar-text-info"><span class="text-description">Member since</span><strong class="small-heading">@(Model.establishment_date != null ? Model.establishment_date.ToString() : "Unknown")</strong></div>
+                            </li>
+                            <li>
+                                <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
+                                <div class="sidebar-text-info"><span class="text-description">Last Jobs Posted</span><strong class="small-heading">@(ViewBag.LastestPosted != null ? ViewBag.LastestPosted + " day(s)" : "Unknown")</strong></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-list-job">
+                        <ul class="ul-disc">
+                            <li>@(Model.address != null ? Model.address + "," : "") @Model.city, @Model.country</li>
+                            <li>Phone: @ViewBag.PhoneNumber</li>
+                            <li>Email: @ViewBag.Email</li>
+                        </ul>
+                        <!-- <div class="mt-30"><a class='btn btn-send-message' href='page-contact.html'>Send Message</a></div> -->
+                    </div>
+                </div>
+                <div class="sidebar-border">
+                    <h6 class="f-18">Similar Companies</h6>
+                    <div class="sidebar-list-job">
+                        <ul>
+                            @Html.Action("GetSimilarCompanies", "Company", new { id = Model.id })
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-border-bg bg-right">
+                    <span class="text-grey">WE ARE</span><span class="text-hiring">HIRING</span>
+                    <p class="font-xxs color-text-paragraph mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto</p>
+                    <div class="mt-15"><a class='btn btn-paragraph-2' href="@(Url.Action("jobs-list", "find-a-job", new { company = Model.meta, pageNum = 1 }))">Know More</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--
+<section class="section-box mt-50 mb-20">
+    <div class="container">
+        <div class="box-newsletter">
+            <div class="row">
+                <div class="col-xl-3 col-12 text-center d-none d-xl-block"><img src="/Assets/jobbox/imgs/template/newsletter-left.png" alt="joxBox"></div>
+                <div class="col-lg-12 col-xl-6 col-12">
+                    <h2 class="text-md-newsletter text-center">New Things Will Always<br> Update Regularly</h2>
+                    <div class="box-form-newsletter mt-40">
+                        <form class="form-newsletter">
+                            <input class="input-newsletter" type="text" value="" placeholder="Enter your email here">
+                            <button class="btn btn-default font-heading icon-send-letter">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-12 text-center d-none d-xl-block"><img src="/Assets/jobbox/imgs/template/newsletter-right.png" alt="joxBox"></div>
+            </div>
+        </div>
+    </div>
+</section>
+-->

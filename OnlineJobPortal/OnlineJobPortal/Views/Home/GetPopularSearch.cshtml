@@ -1,0 +1,16 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.keyword>
+
+@foreach (var item in Model)
+{
+    <a href="@(Url.Action("jobs-list", "find-a-job", new { keywordMeta = item.meta, pageNum = 1 }))">@item.name</a>
+}
+
+<!--
+<a href="#">Designer</a>,
+<a href="#">Web</a>,
+<a href="#">IOS</a>,
+<a href="#">Developer</a>,
+<a href="#">PHP</a>,
+<a href="#">Senior</a>,
+<a href="#">Engineer</a>
+-->

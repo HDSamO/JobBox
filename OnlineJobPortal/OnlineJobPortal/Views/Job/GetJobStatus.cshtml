@@ -1,0 +1,29 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.job_status>
+
+@foreach (var item in Model)
+{
+    <li>
+        <label class="cb-container">
+            <input name="jobStatus" value="@item.meta" type="checkbox"><span class="text-small">@item.name</span><span class="checkmark"></span>
+        </label>
+        @Html.Action("GetAmountJobStatus", "Job", new { id = item.id })
+    </li>
+}
+
+<!--
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">On-site</span><span class="checkmark"></span>
+    </label><span class="number-item">12</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox" checked="checked"><span class="text-small">Remote</span><span class="checkmark"></span>
+    </label><span class="number-item">65</span>
+</li>
+<li>
+    <label class="cb-container">
+        <input type="checkbox"><span class="text-small">Hybrid</span><span class="checkmark"></span>
+    </label><span class="number-item">58</span>
+</li>
+-->

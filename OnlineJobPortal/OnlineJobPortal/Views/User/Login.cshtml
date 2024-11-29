@@ -1,0 +1,75 @@
+﻿@model OnlineJobPortal.Models.login_view
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<section class="pt-100 login-register">
+    <div class="container">
+        <div class="row login-register-cover">
+            <div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
+                <div class="text-center">
+                    <p class="font-sm text-brand-2">Welcome back! </p>
+                    <h2 class="mt-10 mb-5 text-brand-1">Member Login</h2>
+                    <p class="font-sm text-muted mb-30">Access to all features. No credit card required.</p>
+                    <button class="btn social-login hover-up mb-20"><img src="/Assets/jobbox/imgs/template/icons/icon-google.svg" alt="jobbox"><strong>Sign in with Google</strong></button>
+                    <div class="divider-text-center"><span>Or continue with</span></div>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="login-register text-start mt-20">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.account.username, "Username *", htmlAttributes: new { @class = "form-label", @for = "input-1" })
+                            <div>
+                                @Html.EditorFor(model => model.account.username, new { htmlAttributes = new { @class = "form-control", id = "input-1", type = "text", required = "required", placeholder = "StevenJob123", @value = ViewBag.username } })
+                                @Html.ValidationMessageFor(model => model.account.username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.account.password, "Password *", htmlAttributes: new { @class = "form-label", @for = "input-1" })
+                            <div>
+                                @Html.EditorFor(model => model.account.password, new { htmlAttributes = new { @class = "form-control", id = "input-4", type = "password", required = "required", placeholder = "************", @value = ViewBag.password } })
+                                @Html.ValidationMessageFor(model => model.account.password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="login_footer form-group d-flex justify-content-between">
+                            <label class="cb-container">
+                                @Html.CheckBoxFor(model => model.rememberMe)
+                                <span class="text-small">Remember me</span>
+                                <span class="checkmark"></span>
+                            </label>
+                            <a class='text-muted' href='/forgot-password'>Forgot Password</a>
+                        </div>
+
+                        <!--
+                        <div class="login_footer form-group d-flex justify-content-between">
+                            <label class="cb-container">
+                                <input type="checkbox"><span class="text-small">Remenber me</span><span class="checkmark"></span>
+                            </label><a class='text-muted' href='/auth/forgot-password'>Forgot Password</a>
+                        </div>
+                        -->
+
+                        @Html.EditorFor(model => model.returnUrl, new { htmlAttributes = new { @class = "form-control", id = "input-4", type = "hidden", @value = ViewBag.returnUrl } })
+
+                        <div id="checkbox-error-message-1" class="text-danger text-center font-sm mb-30">@(ViewBag.LoginFail != "" ? ViewBag.LoginFail : "")</div>
+
+                        <div class="form-group">
+                            <button class="btn btn-brand-1 hover-up w-100" type="submit" name="login">Login</button>
+                        </div>
+
+                        <div class="text-muted text-center">Don't have an Account? <a href='/auth/register/personal-account'>Sign up</a></div>
+                    </div>
+                }
+            </div>
+            <div class="img-1 d-none d-lg-block"><img class="shape-1" src="/Assets/jobbox/imgs/page/login-register/img-4.svg" alt="JobBox"></div>
+            <div class="img-2"><img src="/Assets/jobbox/imgs/page/login-register/img-3.svg" alt="JobBox"></div>
+        </div>
+    </div>
+</section>

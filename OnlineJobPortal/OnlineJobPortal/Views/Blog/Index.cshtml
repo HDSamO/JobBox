@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<section class="section-box mt-50">
+    <div class="container">
+        <div class="box-improve">
+            <div class="row">
+                @{ Html.RenderAction("GetTopNews", "Blog"); }
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-box mt-50">
+    <div class="post-loop-grid">
+        <div class="container">
+            <div class="text-left">
+                <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Latest Posts</h2>
+                <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Don&apos;t miss the trending news</p>
+            </div>
+            <div class="row mt-30">
+                <div class="col-lg-12">
+                    <div class="row">
+                        @{ Html.RenderAction("GetLastestPosts", "Blog"); }
+                    </div>
+                    <!--
+                    <div class="paginations">
+                        <ul class="pager">
+                            <li><a class="pager-prev" href="#"></a></li>
+                            <li><a class="pager-number" href="#">1</a></li>
+                            <li><a class="pager-number" href="#">2</a></li>
+                            <li><a class="pager-number" href="#">3</a></li>
+                            <li><a class="pager-number" href="#">4</a></li>
+                            <li><a class="pager-number" href="#">5</a></li>
+                            <li><a class="pager-number active" href="#">6</a></li>
+                            <li><a class="pager-number" href="#">7</a></li>
+                            <li><a class="pager-next" href="#"></a></li>
+                        </ul>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

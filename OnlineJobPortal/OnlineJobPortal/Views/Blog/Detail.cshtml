@@ -1,0 +1,87 @@
+﻿@model OnlineJobPortal.Models.blog
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<section class="section-box">
+    <div><img src="/Assets/jobbox/imgs/page/blog/@(Model.background_image != null ? Model.background_image : "img-single.png")"></div>
+</section>
+<section class="section-box">
+    <div class="archive-header pt-50 text-center">
+        <div class="container">
+            <div class="box-white">
+                <div class="max-width-single">
+                    <h2 class="mb-30 mt-20 text-center">@Model.title</h2>
+                    <div class="post-meta text-muted d-flex align-items-center mx-auto justify-content-center">
+                        <div class="date"><span class="font-xs color-text-paragraph-2 mr-20 d-inline-block"><img class="img-middle mr-5" src="/Assets/jobbox/imgs/page/blog/calendar.svg">@Model.datebegin</span><span class="font-xs color-text-paragraph-2 d-inline-block"><img class="img-middle mr-5" src="/Assets/jobbox/imgs/template/icons/time.svg"> @Model.read_time mins to read</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="post-loop-grid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="single-body">
+                    <div class="max-width-single">
+                        <div class="font-lg mb-30">
+                            <p>
+                                @Model.content_1
+                            </p>
+                        </div>
+                    </div>
+                    <div class="max-width-single">
+                        <img src="/Assets/jobbox/imgs/page/blog/@(Model.featured_image != null ? Model.featured_image : "img-content.png")">
+                    </div>
+                    <div class="max-width-single">
+                        <div class="content-single">
+                            <h4>Description</h4>
+                            <p></p>
+                            <ul>
+                                @{
+                                    // Tách chuỗi thành các mục riêng biệt dựa trên ký tự '•'
+                                    string[] contentItems = Model.content_2.Split('•');
+
+                                    // Xóa phần tử rỗng từ mảng
+                                    contentItems = contentItems.Where(item => !string.IsNullOrWhiteSpace(item)).ToArray();
+                                }
+                                @foreach (var item in contentItems)
+                                {
+                                    <li>@item</li>
+                                }
+                            </ul>
+                            <!--
+                            <ul>
+                                <li>A portfolio demonstrating well thought through and polished end to end customer journeys</li>
+                                <li>5+ years of industry experience in interactive design and / or visual design</li>
+                                <li>Excellent interpersonal skills&#x202F;</li>
+                                <li>Aware of trends in&#x202F;mobile, communications, and collaboration</li>
+                                <li>Ability to create highly polished design prototypes, mockups, and other communication artifacts</li>
+                                <li>The ability to scope and estimate efforts accurately and prioritize tasks and goals independently</li>
+                                <li>History of impacting shipping products with your work</li>
+                                <li>A Bachelor&rsquo;s Degree in Design (or related field) or equivalent professional experience</li>
+                                <li>Proficiency in a variety of design tools such as Figma, Photoshop, Illustrator, and Sketch</li>
+                            </ul>
+                            -->
+                            <p></p>
+                        </div>
+                        <div class="single-apply-jobs mt-20">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    @Html.Action("GetTagKeywords", "Blog", new { id = Model.id })
+                                </div>
+                                <div class="col-md-5 text-lg-end social-share">
+                                    <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-20 mt-10">Share</h6><a class="mr-20 d-inline-block d-middle hover-up" href="#"><img alt="jobBox" src="/Assets/jobbox/imgs/page/blog/fb.svg"></a><a class="mr-20 d-inline-block d-middle hover-up" href="#"><img alt="jobBox" src="/Assets/jobbox/imgs/page/blog/tw.svg"></a><a class="mr-0 d-inline-block d-middle hover-up" href="#"><img alt="jobBox" src="/Assets/jobbox/imgs/page/blog/pi.svg"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

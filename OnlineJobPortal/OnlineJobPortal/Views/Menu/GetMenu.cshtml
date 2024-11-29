@@ -1,0 +1,11 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.menu>
+
+@foreach (var item in Model)
+{
+    bool hasChildren = ViewBag.hasChild.Contains(item.id);
+
+    <li class="@(hasChildren ? "has-children" : "")">
+        <a class="" href='/@item.meta'>@item.name</a>
+        @Html.Action("LoadChildren", "Menu", new { id = item.id })
+    </li>
+}
