@@ -278,7 +278,7 @@ CREATE TABLE [job_post] (
   [job_desc] NVARCHAR(4000) DEFAULT NULL,
   [job_salary] FLOAT NOT NULL,
   [is_active] BIT DEFAULT 1,
-  [job_verify] VARCHAR(255) DEFAULT 'waiting',  --for admin (waiting, confirmed, declined)
+  [job_verify] VARCHAR(255) DEFAULT 'verified',  --for admin verification (waiting, verified, declined), default should be waiting
   [address] NVARCHAR(100) DEFAULT NULL,
   [country] NVARCHAR(50) NOT NULL,
   [city] NVARCHAR(50) NOT NULL,
@@ -494,25 +494,25 @@ INSERT INTO [account] (role_id, email, username, password, is_active, phone_numb
 VALUES (2, 'nghiaantdtu@gmail.com', 'nghiaantdtu', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '0794865179', N'nghiaantdtu', 1, 16, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
 
 INSERT INTO [account] (role_id, email, username, password, is_active, phone_number, [meta], [hide], [order], [datebegin])
-VALUES (2, 'seeker3@gmail.com', 'seeker3', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker3', 1, 17, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
+VALUES (2, 'seeker1@gmail.com', 'seeker1', '353cb9db29fe1e9006d869133419771800c02a12', 1, '9876543210', N'seeker1', 1, 17, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
 
 INSERT INTO [account] (role_id, email, username, password, is_active, phone_number, [meta], [hide], [order], [datebegin])
-VALUES (2, 'seeker4@gmail.com', 'seeker4', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker4', 1, 18, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
+VALUES (2, 'seeker4@gmail.com', 'seeker2', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker4', 1, 18, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
 
 INSERT INTO [account] (role_id, email, username, password, is_active, phone_number, [meta], [hide], [order], [datebegin])
-VALUES (2, 'seeker5@gmail.com', 'seeker5', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker5', 1, 19, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
+VALUES (2, 'seeker5@gmail.com', 'seeker3', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker5', 1, 19, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
 
 INSERT INTO [account] (role_id, email, username, password, is_active, phone_number, [meta], [hide], [order], [datebegin])
-VALUES (2, 'seeker6@gmail.com', 'seeker6', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker6', 1, 20, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
+VALUES (2, 'seeker6@gmail.com', 'seeker4', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker6', 1, 20, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
 
 INSERT INTO [account] (role_id, email, username, password, is_active, phone_number, [meta], [hide], [order], [datebegin])
-VALUES (2, 'seeker7@gmail.com', 'seeker7', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker7', 1, 21, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
+VALUES (2, 'seeker7@gmail.com', 'seeker5', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker7', 1, 21, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
 
 INSERT INTO [account] (role_id, email, username, password, is_active, phone_number, [meta], [hide], [order], [datebegin])
-VALUES (2, 'seeker8@gmail.com', 'seeker8', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker8', 1, 22, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
+VALUES (2, 'seeker8@gmail.com', 'seeker6', 'd87ba83bf74f898be86afbd77f9b74be8620e795', 1, '9876543210', N'seeker8', 1, 22, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
 
 INSERT INTO [account] (role_id, email, username, password, is_active, phone_number, [meta], [hide], [order], [datebegin])
-VALUES (3, 'admin1@gmail.com', 'Admin1', '123123', 1, '9876543210', N'seeker8', 1, 22, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
+VALUES (3, 'admin1@gmail.com', 'Admin1', '353cb9db29fe1e9006d869133419771800c02a12', 1, '9876543210', N'seeker8', 1, 22, CAST(N'2018-03-09 00:00:00' AS SmallDateTime));
 
 -- Industry
 INSERT INTO [industry] (name, [image], [meta], [hide], [order], [datebegin])
@@ -5870,6 +5870,39 @@ Quality Control: Participate in quality control measures to ensure the project m
 
 60000.00, 'Canada', 'Vancouver', NULL, N'quantity-surveyor', 1, 135, CAST(N'2024-03-09 00:00:00' AS SmallDateTime));
 
+-- Quantity Surveyor (Full-Time, Entry-Level, Quantity Surveyor, No experience required, Various Locations (Saudi Arabia))
+INSERT INTO [job_post] (job_title, company_id, job_type_id, job_position_id, job_level_id, job_experience_id, job_status_id, job_welcome, job_essential, job_preferred, job_desc, job_salary, job_verify,[country], [city], [address], [meta], [hide], [order], [datebegin])
+VALUES (N'Quantity Surveyor', 14, 3, 1, 1, 1, 3, 
+-- Job Welcome
+N'The team is dedicated to building high-quality structures and exceeding client expectations. We are seeking a skilled and motivated Electrician to join our growing team.
+
+The ideal candidate will have a strong work ethic, a passion for construction, and a commitment to safety. This candidate will thrive in a fast-paced environment and enjoy collaborating with a team of experienced professionals.',
+
+-- Job Essential
+N'• A minimum of 6 years of experience in the construction industry (a plus in Electrical experience)
+• Proven ability to read and interpret construction plans and blueprints
+• Experience working in a safe and efficient manner, adhering to all safety regulations
+• Strong communication and interpersonal skills, with the ability to collaborate effectively with colleagues and clients
+• Ability to work independently and as part of a team to achieve project goals
+• Excellent problem-solving skills and the ability to adapt to changing situations
+• Strong physical fitness and stamina to perform physically demanding tasks',
+
+-- Job Preferred
+N'• Experience operating and maintaining construction equipment (a plus)
+• Valid construction [ license (a plus)
+• Experience in Specific Construction Project Type ',
+
+-- Job Description
+N'Construction: Perform various construction tasks as assigned, ensuring high-quality workmanship and adherence to project specifications.
+Safety: Prioritize safety on the job site by following all safety protocols and procedures, and identifying potential hazards.
+Teamwork: Collaborate effectively with colleagues, including supervisors, foremen, and other tradespeople, to achieve project goals on time and within budget.
+Communication: Maintain clear and concise communication with supervisors, clients, and other stakeholders regarding project progress and any potential issues.
+Problem-Solving: Identify and resolve construction challenges effectively, adapting to changing situations and finding practical solutions.
+Quality Control: Participate in quality control measures to ensure the project meets all specifications and standards.',
+
+60000.00, 'waiting','Canada', 'Vancouver', NULL, N'quantity-surveyor', 1, 135, CAST(N'2024-03-09 00:00:00' AS SmallDateTime));
+
+
 -- Carpenter (Full-Time, Entry-Level, Carpenter, No experience required, Various Locations (Saudi Arabia))
 INSERT INTO [job_post] (job_title, company_id, job_type_id, job_position_id, job_level_id, job_experience_id, job_status_id, job_welcome, job_essential, job_preferred, job_desc, job_salary, [country], [city], [address], [meta], [hide], [order], [datebegin])
 VALUES (N'Carpenter', 14, 3, 1, 1, 1, 3,
@@ -5965,6 +5998,38 @@ Problem-Solving: Identify and resolve construction challenges effectively, adapt
 Quality Control: Participate in quality control measures to ensure the project meets all specifications and standards.',
 
 65000.00, 'Japan', 'Tokyo', NULL, N'human-resources-specialist', 1, 138, CAST(N'2024-03-09 00:00:00' AS SmallDateTime));
+
+-- Human Resources Specialist (Full-Time, Entry-Level, Human Resources Specialist, No experience required, Riyadh, Saudi Arabia)
+INSERT INTO [job_post] (job_title, company_id, job_type_id, job_position_id, job_level_id, job_experience_id, job_status_id, job_welcome, job_essential, job_preferred, job_desc, job_salary, job_verify, [country], [city], [address], [meta], [hide], [order], [datebegin])
+VALUES (N'Human Resources Specialist Senior', 14, 3, 1, 1, 1, 3,
+-- Job Welcome
+N'The team is dedicated to building high-quality structures and exceeding client expectations. We are seeking a skilled and motivated Electrician to join our growing team.
+
+The ideal candidate will have a strong work ethic, a passion for construction, and a commitment to safety. This candidate will thrive in a fast-paced environment and enjoy collaborating with a team of experienced professionals.',
+
+-- Job Essential
+N'• A minimum of 6 years of experience in the construction industry (a plus in Electrical experience)
+• Proven ability to read and interpret construction plans and blueprints
+• Experience working in a safe and efficient manner, adhering to all safety regulations
+• Strong communication and interpersonal skills, with the ability to collaborate effectively with colleagues and clients
+• Ability to work independently and as part of a team to achieve project goals
+• Excellent problem-solving skills and the ability to adapt to changing situations
+• Strong physical fitness and stamina to perform physically demanding tasks',
+
+-- Job Preferred
+N'• Experience operating and maintaining construction equipment (a plus)
+• Valid construction [ license (a plus)
+• Experience in Specific Construction Project Type ',
+
+-- Job Description
+N'Construction: Perform various construction tasks as assigned, ensuring high-quality workmanship and adherence to project specifications.
+Safety: Prioritize safety on the job site by following all safety protocols and procedures, and identifying potential hazards.
+Teamwork: Collaborate effectively with colleagues, including supervisors, foremen, and other tradespeople, to achieve project goals on time and within budget.
+Communication: Maintain clear and concise communication with supervisors, clients, and other stakeholders regarding project progress and any potential issues.
+Problem-Solving: Identify and resolve construction challenges effectively, adapting to changing situations and finding practical solutions.
+Quality Control: Participate in quality control measures to ensure the project meets all specifications and standards.',
+
+65000.00, 'waiting', 'Japan', 'Tokyo', NULL, N'human-resources-specialist', 1, 138, CAST(N'2024-03-09 00:00:00' AS SmallDateTime));
 
 INSERT INTO [blog] ([title], [content_1], [content_2], [background_image], [featured_image], [read_time], [meta], [order], [datebegin])
 VALUES (
